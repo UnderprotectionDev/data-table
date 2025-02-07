@@ -1,6 +1,7 @@
 import Link from "next/link";
-import { Button } from "@/components/ui/button";
-import { Database } from "lucide-react";
+import { SignInButton, SignedIn, SignedOut, UserButton } from "@clerk/nextjs";
+import { Database, LogIn } from "lucide-react";
+import { Button } from "../ui/button";
 
 export function Header() {
   return (
@@ -11,9 +12,20 @@ export function Header() {
             <Database className="h-6 w-6 text-primary" />
             <span className="text-xl font-bold">DataOps</span>
           </Link>
-          <Button asChild>
-            <Link href="/sign-in">Sign In</Link>
-          </Button>
+          <SignedOut>
+            <SignInButton
+              forceRedirectUrl="/dashboard"
+              signUpForceRedirectUrl="/dashboard"
+            >
+              <Button size="lg" className="flex items-center">
+                <LogIn className="h-5 w-5" />
+                Log In
+              </Button>
+            </SignInButton>
+          </SignedOut>
+          <SignedIn>
+            <UserButton />
+          </SignedIn>
         </div>
       </div>
     </header>

@@ -1,4 +1,4 @@
-import { Search, Table, BarChart3 } from "lucide-react";
+import { Search, Table, BarChart3, LucideIcon } from "lucide-react";
 import {
   Card,
   CardContent,
@@ -39,7 +39,15 @@ export function Features() {
   );
 }
 
-function FeatureCard({ icon: Icon, title, description }) {
+function FeatureCard({
+  icon: Icon,
+  title,
+  description,
+}: {
+  icon: LucideIcon;
+  title: string;
+  description: string;
+}) {
   return (
     <Card className="transition-all duration-300 hover:shadow-lg">
       <CardHeader>
