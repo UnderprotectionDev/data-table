@@ -4,11 +4,10 @@ import * as React from "react";
 import Link from "next/link";
 import {
   Plus,
-  Monitor,
-  UserCircle,
-  Server,
-  LayoutDashboard,
   Database,
+  Search,
+  TableProperties,
+  TableIcon,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
@@ -43,10 +42,9 @@ export function MainSidebar() {
             <TooltipTrigger asChild>
               <Button variant="ghost" size="icon" className="h-9 w-9">
                 <Plus className="h-4 w-4" />
-                <span className="sr-only">New Chat</span>
               </Button>
             </TooltipTrigger>
-            <TooltipContent side="right">New Chat</TooltipContent>
+            <TooltipContent side="right">New Data</TooltipContent>
           </Tooltip>
         ) : (
           <>
@@ -61,8 +59,8 @@ export function MainSidebar() {
               variant="outline"
               className="w-full justify-start gap-2 text-muted-foreground mt-4"
             >
-              <Plus className="h-4 w-4" />
-              New Chat
+              <Plus className="size" />
+              New Data
             </Button>
           </>
         )}
@@ -73,25 +71,21 @@ export function MainSidebar() {
             <SidebarMenu>
               {[
                 {
-                  href: "/dashboard",
-                  icon: LayoutDashboard,
-                  label: "Dashboard",
-                },
-                {
-                  href: "/clientsiderender",
-                  icon: Monitor,
-                  label: "Client Side Render",
+                  href: "/search",
+                  icon: Search,
+                  label: "Search",
                 },
 
                 {
-                  href: "/serversiderender",
-                  icon: Server,
-                  label: "Server Side Render",
+                  href: "/table",
+                  icon: TableProperties,
+                  label: "Table",
                 },
+
                 {
-                  href: "/user-profile",
-                  icon: UserCircle,
-                  label: "User Profile",
+                  href: "/datatable",
+                  icon: TableIcon,
+                  label: "Data Table",
                 },
               ].map((item) => (
                 <SidebarMenuItem key={item.href}>
