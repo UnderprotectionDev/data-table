@@ -124,9 +124,10 @@ export function MainSidebar() {
           <SignedIn>
             <UserButton />
           </SignedIn>
+
           {!isCollapsed && (
             <div className="flex flex-col items-start ml-2">
-              <p className="text-sm font-medium">{user?.username}</p>
+              <p className="text-sm font-medium ml-2">{user?.fullName}</p>
             </div>
           )}
         </div>
