@@ -7,7 +7,8 @@ import { flattenValidationErrors } from "next-safe-action";
 import { z } from "zod";
 
 export async function getDataEntry() {
-  await db.select().from(dataEntry);
+  const data = await db.select().from(dataEntry);
+  return data;
 }
 
 export const saveDataEntryAction = actionClient

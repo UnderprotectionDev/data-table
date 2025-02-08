@@ -45,10 +45,11 @@ export default function NewData() {
     },
   });
 
-  const { execute, result, status } = useStateAction(saveDataEntryAction);
+  const { execute, status } = useStateAction(saveDataEntryAction);
 
   function onSubmit(values: z.infer<typeof insertDataEntrySchema>) {
     execute(values);
+    form.reset();
   }
 
   return (
