@@ -8,10 +8,8 @@ export default function RootLayout({
 }) {
   return (
     <SidebarProvider>
-      <div className="flex h-screen">
-        <MainSidebar />
-        {children}
-      </div>
+      <MainSidebar />
+      {children}
     </SidebarProvider>
   );
 }
