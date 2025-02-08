@@ -5,6 +5,7 @@ import { dataEntry, insertDataEntrySchema } from "@/db/schema";
 import { actionClient } from "@/lib/safe-action";
 import { flattenValidationErrors } from "next-safe-action";
 import { z } from "zod";
+import { ilike, or } from "drizzle-orm";
 
 export async function getDataEntry() {
   const data = await db.select().from(dataEntry);
@@ -36,13 +37,27 @@ export const saveDataEntryAction = actionClient
       await db
         .insert(dataEntry)
         .values({
+          textType,
           varcharType,
           integerType,
           decimalType,
           booleanType,
           enumType,
-          textType,
         })
         .returning();
     }
   );
+
+export async function searchTable(query: string) {
+  const data = await db
+    .select()
+    .from(dataEntry)
+    .where(
+      or(
+        ilike(dataEntry.textType, `%${query}%`),
+        ilike(dataEntry.varcharType, `%${query}%`)
+      )
+    );
+
+  return data;
+}

@@ -1,4 +1,4 @@
-import { getDataEntry } from "@/actions/data-entry.action";
+import { getDataEntry, searchTable } from "@/actions/data-entry.action";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import {
@@ -11,19 +11,26 @@ import {
 } from "@/components/ui/table";
 import Form from "next/form";
 
-export default async function TableManager() {
-  const data = await getDataEntry();
+export default async function TableManager({
+  searchParams,
+}: {
+  searchParams: { query?: string };
+}) {
+  const data = searchParams.query
+    ? await searchTable(searchParams.query)
+    : await getDataEntry();
 
   return (
     <div className="p-6 space-y-4">
       <div className="flex items-center justify-between">
-        <Form action="/search" className="flex gap-2 w-full">
+        <Form action="/table" className="flex gap-2 w-full">
           <Input
             name="query"
             className="flex-1 px-3 py-2 border rounded-md"
-            placeholder="Search..."
+            placeholder="Search in text and variable text..."
+            defaultValue={searchParams.query}
           />
-          <Button type="submit">Submit</Button>
+          <Button type="submit">Search</Button>
         </Form>
       </div>
 
