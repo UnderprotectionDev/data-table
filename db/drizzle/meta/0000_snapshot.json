@@ -1,0 +1,117 @@
+{
+  "id": "81653c25-8707-47da-887a-a69910f22f55",
+  "prevId": "00000000-0000-0000-0000-000000000000",
+  "version": "7",
+  "dialect": "postgresql",
+  "tables": {
+    "public.data_entry": {
+      "name": "data_entry",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "uuid",
+          "primaryKey": true,
+          "notNull": true,
+          "default": "gen_random_uuid()"
+        },
+        "text_type": {
+          "name": "text_type",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "varchar_type": {
+          "name": "varchar_type",
+          "type": "varchar",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "boolean_type": {
+          "name": "boolean_type",
+          "type": "boolean",
+          "primaryKey": false,
+          "notNull": true,
+          "default": true
+        },
+        "integer_type": {
+          "name": "integer_type",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "decimal_type": {
+          "name": "decimal_type",
+          "type": "numeric(10, 2)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "enum_type": {
+          "name": "enum_type",
+          "type": "enum_type",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "'enum1'"
+        },
+        "date_type": {
+          "name": "date_type",
+          "type": "date",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "now()"
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "timestamp with time zone",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "now()"
+        },
+        "updated_at": {
+          "name": "updated_at",
+          "type": "timestamp with time zone",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "now()"
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {
+        "data_entry_varchar_type_unique": {
+          "name": "data_entry_varchar_type_unique",
+          "nullsNotDistinct": false,
+          "columns": [
+            "varchar_type"
+          ]
+        }
+      },
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    }
+  },
+  "enums": {
+    "public.enum_type": {
+      "name": "enum_type",
+      "schema": "public",
+      "values": [
+        "enum1",
+        "enum2",
+        "enum3"
+      ]
+    }
+  },
+  "schemas": {},
+  "sequences": {},
+  "roles": {},
+  "policies": {},
+  "views": {},
+  "_meta": {
+    "columns": {},
+    "schemas": {},
+    "tables": {}
+  }
+}

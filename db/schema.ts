@@ -10,14 +10,16 @@ import {
   date,
   pgEnum,
 } from "drizzle-orm/pg-core";
-import { sql } from "drizzle-orm";
+import {
+  createInsertSchema,
+  createSelectSchema,
+  createUpdateSchema,
+} from "drizzle-zod";
 
 export const ENUM_TYPE = pgEnum("enum_type", ["enum1", "enum2", "enum3"]);
 
 export const dataEntry = pgTable("data_entry", {
-  id: uuid("id")
-    .primaryKey()
-    .default(sql`uuid_generate_v4()`),
+  id: uuid("id").notNull().primaryKey().defaultRandom(),
   textType: text("text_type"),
   varcharType: varchar("varchar_type").unique().notNull(),
   booleanType: boolean("boolean_type").notNull().default(true),
@@ -29,3 +31,7 @@ export const dataEntry = pgTable("data_entry", {
   created_at: timestamp("created_at", { withTimezone: true }).defaultNow(),
   updated_at: timestamp("updated_at", { withTimezone: true }).defaultNow(),
 });
+
+export const insertDataEntrySchema = createInsertSchema(dataEntry);
+export const updateDataEntrySchema = createUpdateSchema(dataEntry);
+export const selectDataEntrySchema = createSelectSchema(dataEntry);

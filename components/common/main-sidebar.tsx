@@ -40,8 +40,10 @@ export function MainSidebar() {
         {isCollapsed ? (
           <Tooltip>
             <TooltipTrigger asChild>
-              <Button variant="ghost" size="icon" className="h-9 w-9">
-                <Plus className="h-4 w-4" />
+              <Button variant="ghost" size="icon" className="h-9 w-9" asChild>
+                <Link href="/new-data">
+                  <Plus className="size-4" />
+                </Link>
               </Button>
             </TooltipTrigger>
             <TooltipContent side="right">New Data</TooltipContent>
@@ -57,10 +59,13 @@ export function MainSidebar() {
             </div>
             <Button
               variant="outline"
-              className="w-full justify-start gap-2 text-muted-foreground mt-4"
+              className="w-full justify-center gap-2 text-muted-foreground mt-4"
+              asChild
             >
-              <Plus className="size" />
-              New Data
+              <Link href="/new-data">
+                <Plus className="size-4" />
+                New Data
+              </Link>
             </Button>
           </>
         )}
@@ -70,6 +75,11 @@ export function MainSidebar() {
           <SidebarGroupContent>
             <SidebarMenu>
               {[
+                {
+                  href: "/new-data",
+                  icon: Plus,
+                  label: "New Data",
+                },
                 {
                   href: "/search",
                   icon: Search,
