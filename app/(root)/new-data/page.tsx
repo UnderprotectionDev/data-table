@@ -38,7 +38,7 @@ export default function NewData() {
       varcharType: "",
       booleanType: true,
       integerType: 0,
-      decimalType: 0,
+      decimalType: "0",
       enumType: "enum1",
     },
   });
@@ -124,7 +124,8 @@ export default function NewData() {
                         type="number"
                         placeholder="Integer Type"
                         {...field}
-                        value={Number(field.value) || 0}
+                        onChange={(e) => field.onChange(Number(e.target.value))}
+                        value={field.value}
                       />
                     </FormControl>
 
