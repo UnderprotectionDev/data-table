@@ -29,6 +29,8 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { useStateAction } from "next-safe-action/stateful-hooks";
+import { saveDataEntryAction } from "@/actions/data-entry.action";
 
 export default function NewData() {
   const form = useForm<z.infer<typeof insertDataEntrySchema>>({
@@ -43,8 +45,10 @@ export default function NewData() {
     },
   });
 
+  const { execute, result, status } = useStateAction(saveDataEntryAction);
+
   function onSubmit(values: z.infer<typeof insertDataEntrySchema>) {
-    console.log(values);
+    execute(values);
   }
 
   return (
@@ -182,8 +186,8 @@ export default function NewData() {
                   </FormItem>
                 )}
               />
-              <Button type="submit" className="w-full">
-                Submit
+              <Button type="submit" disabled={status === "executing"}>
+                {status === "executing" ? "Submitting..." : "Submit"}
               </Button>
             </form>
           </Form>
