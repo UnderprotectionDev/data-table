@@ -81,12 +81,6 @@ export function MainSidebar() {
                   label: "New Data",
                 },
                 {
-                  href: "/search",
-                  icon: Search,
-                  label: "Search",
-                },
-
-                {
                   href: "/table",
                   icon: TableProperties,
                   label: "Table",
@@ -96,6 +90,11 @@ export function MainSidebar() {
                   href: "/datatable",
                   icon: TableIcon,
                   label: "Data Table",
+                },
+                {
+                  href: "/nuqs",
+                  icon: Search,
+                  label: "Nuqs",
                 },
               ].map((item) => (
                 <SidebarMenuItem key={item.href}>
