@@ -8,7 +8,18 @@ import { z } from "zod";
 import { ilike, or } from "drizzle-orm";
 
 export async function getDataEntry() {
-  const data = await db.select().from(dataEntry);
+  const data = await db
+    .select({
+      id: dataEntry.id,
+      textType: dataEntry.textType,
+      varcharType: dataEntry.varcharType,
+      integerType: dataEntry.integerType,
+      decimalType: dataEntry.decimalType,
+      booleanType: dataEntry.booleanType,
+      enumType: dataEntry.enumType,
+      created_at: dataEntry.created_at,
+    })
+    .from(dataEntry);
   return data;
 }
 

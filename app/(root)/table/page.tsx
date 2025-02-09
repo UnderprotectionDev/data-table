@@ -14,10 +14,10 @@ import Form from "next/form";
 export default async function TableManager({
   searchParams,
 }: {
-  searchParams: { query?: string };
+  searchParams: Promise<{ query: string }>;
 }) {
-  const data = searchParams.query
-    ? await searchTable(searchParams.query)
+  const data = (await searchParams).query
+    ? await searchTable((await searchParams).query)
     : await getDataEntry();
 
   return (
@@ -28,7 +28,7 @@ export default async function TableManager({
             name="query"
             className="flex-1 px-3 py-2 border rounded-md"
             placeholder="Search in text and variable text..."
-            defaultValue={searchParams.query}
+            defaultValue={(await searchParams).query}
           />
           <Button type="submit">Search</Button>
         </Form>
